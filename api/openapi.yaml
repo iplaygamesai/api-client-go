@@ -1,0 +1,3900 @@
+openapi: 3.0.3
+info:
+  description: Universal API for casino operators to access games from multiple providers
+    through a single integration.
+  title: Game Aggregator API Documentation
+  version: 1.0.0
+servers:
+- url: https://api.iplaygames.ai
+security:
+- default: []
+tags:
+- description: ""
+  name: Endpoints
+- description: |2-
+
+    API endpoints for standalone freespin management
+  name: Freespins
+- description: |2-
+
+    API endpoints for game session management
+  name: Game Sessions
+- description: |2-
+
+    API endpoints for game transaction history
+  name: Game Transactions
+- description: |2-
+
+    API endpoints for games catalog
+  name: Games
+- description: |2-
+
+    API endpoints for multi-session management (TikTok-style game swiping)
+  name: Multi-Sessions
+- description: |2-
+
+    API endpoints for managing widget domains
+  name: Widget Management
+paths:
+  /api/v1/producers:
+    get:
+      description: ""
+      operationId: getApiV1Producers
+      parameters: []
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: ""
+      tags:
+      - Endpoints
+  /api/v1/producers/{id}:
+    get:
+      description: ""
+      operationId: getApiV1ProducersId
+      parameters:
+      - description: The ID of the producer.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: ""
+      tags:
+      - Endpoints
+  /api/v1/jackpot/configure:
+    post:
+      description: ""
+      operationId: configureJackpotSettingsForTheOperator
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/configureJackpotSettingsForTheOperator_request"
+        required: false
+      responses: {}
+      summary: Configure jackpot settings for the operator
+      tags:
+      - Endpoints
+  /api/v1/jackpot/configuration:
+    get:
+      description: ""
+      operationId: getCurrentConfigurationWithGames
+      parameters: []
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get current configuration with games
+      tags:
+      - Endpoints
+  /api/v1/jackpot/games:
+    delete:
+      description: ""
+      operationId: removeGamesFromAJackpotPoolType
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/removeGamesFromAJackpotPoolType_request"
+        required: true
+      responses: {}
+      summary: Remove games from a jackpot pool type
+      tags:
+      - Endpoints
+    get:
+      description: ""
+      operationId: getGamesForAPoolTypeOrAllPoolTypes
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getGamesForAPoolTypeOrAllPoolTypes_request"
+        required: false
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get games for a pool type or all pool types
+      tags:
+      - Endpoints
+    post:
+      description: ""
+      operationId: addGamesToAJackpotPoolType
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addGamesToAJackpotPoolType_request"
+        required: true
+      responses: {}
+      summary: Add games to a jackpot pool type
+      tags:
+      - Endpoints
+  /api/v1/jackpot/contribute:
+    post:
+      description: ""
+      operationId: addAContributionToAJackpotPool
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addAContributionToAJackpotPool_request"
+        required: true
+      responses: {}
+      summary: Add a contribution to a jackpot pool
+      tags:
+      - Endpoints
+  /api/v1/jackpot/contributions:
+    get:
+      description: ""
+      operationId: getPlayerContributionHistory
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getPlayerContributionHistory_request"
+        required: true
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get player contribution history
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools:
+    get:
+      description: ""
+      operationId: listOperatorsJackpotPools
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listOperatorsJackpotPools_request"
+        required: false
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: List operator's jackpot pools
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools/{poolId}:
+    get:
+      description: ""
+      operationId: getPoolDetails
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: poolId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get pool details
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools/{poolId}/winners:
+    get:
+      description: ""
+      operationId: getPoolWinners
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: poolId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get pool winners
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools/{poolId}/release:
+    post:
+      description: ""
+      operationId: manuallyTriggerPoolRelease
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: poolId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Manually trigger pool release
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools/{poolId}/expiration:
+    put:
+      description: ""
+      operationId: setGrandPrizeExpirationDate
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: poolId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setGrandPrizeExpirationDate_request"
+        required: true
+      responses: {}
+      summary: Set grand prize expiration date
+      tags:
+      - Endpoints
+  /api/v1/jackpot/pools/{poolId}/live-mode:
+    put:
+      description: ""
+      operationId: configureLiveModeSettingsForAPool
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: poolId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/configureLiveModeSettingsForAPool_request"
+        required: true
+      responses: {}
+      summary: Configure live mode settings for a pool
+      tags:
+      - Endpoints
+  /api/v1/jackpot/targeted-players:
+    get:
+      description: ""
+      operationId: listTargetedPlayersForOperator
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listTargetedPlayersForOperator_request"
+        required: false
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: List targeted players for operator
+      tags:
+      - Endpoints
+    post:
+      description: ""
+      operationId: createATargetedPlayerConfiguration
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createATargetedPlayerConfiguration_request"
+        required: true
+      responses: {}
+      summary: Create a targeted player configuration
+      tags:
+      - Endpoints
+  /api/v1/jackpot/targeted-players/{targetedPlayerId}:
+    delete:
+      description: ""
+      operationId: deactivateATargetedPlayerConfiguration
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: targetedPlayerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Deactivate a targeted player configuration
+      tags:
+      - Endpoints
+    get:
+      description: ""
+      operationId: getTargetedPlayerDetails
+      parameters:
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: targetedPlayerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get targeted player details
+      tags:
+      - Endpoints
+  /api/v1/promotions:
+    get:
+      description: ""
+      operationId: listPromotionsForTheOperator
+      parameters: []
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: List promotions for the operator
+      tags:
+      - Endpoints
+    post:
+      description: ""
+      operationId: createANewPromotion
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createANewPromotion_request"
+        required: true
+      responses: {}
+      summary: Create a new promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}:
+    delete:
+      description: ""
+      operationId: deleteAPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Delete a promotion
+      tags:
+      - Endpoints
+    get:
+      description: ""
+      operationId: getASpecificPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get a specific promotion
+      tags:
+      - Endpoints
+    put:
+      description: ""
+      operationId: updateAPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAPromotion_request"
+        required: false
+      responses: {}
+      summary: Update a promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/games:
+    post:
+      description: ""
+      operationId: manageGamesForAPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/manageGamesForAPromotion_request"
+        required: false
+      responses: {}
+      summary: Manage games for a promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/leaderboard:
+    get:
+      description: ""
+      operationId: getLeaderboardForAPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get leaderboard for a promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/winners:
+    get:
+      description: ""
+      operationId: getWinnersForAPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get winners for a promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/periods/{periodId}/distribute:
+    post:
+      description: ""
+      operationId: manuallyDistributePrizesForAPeriod
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: ""
+        example: architecto
+        explode: false
+        in: path
+        name: periodId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Manually distribute prizes for a period
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/opt-in:
+    post:
+      description: ""
+      operationId: optInOperatorToAPlatformnetworkPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Opt-in operator to a platform/network promotion
+      tags:
+      - Endpoints
+  /api/v1/promotions/{id}/opt-out:
+    post:
+      description: ""
+      operationId: optOutOperatorFromAPlatformnetworkPromotion
+      parameters:
+      - description: The ID of the promotion.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Opt-out operator from a platform/network promotion
+      tags:
+      - Endpoints
+  /api/v1/external-games:
+    get:
+      description: ""
+      operationId: listExternalGamesForOperator
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listExternalGamesForOperator_request"
+        required: false
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: List external games for operator
+      tags:
+      - Endpoints
+    post:
+      description: ""
+      operationId: createASingleExternalGame
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createASingleExternalGame_request"
+        required: true
+      responses: {}
+      summary: Create a single external game
+      tags:
+      - Endpoints
+  /api/v1/external-games/producers:
+    get:
+      description: ""
+      operationId: getUniqueProducerNamesForFiltering
+      parameters: []
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get unique producer names for filtering
+      tags:
+      - Endpoints
+  /api/v1/external-games/bulk:
+    delete:
+      description: ""
+      operationId: bulkDeleteExternalGamesByIDs
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bulkDeleteExternalGamesByIDs_request"
+        required: false
+      responses: {}
+      summary: Bulk delete external games by IDs
+      tags:
+      - Endpoints
+    post:
+      description: ""
+      operationId: bulkCreateExternalGamesFromJSONArray
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bulkCreateExternalGamesFromJSONArray_request"
+        required: true
+      responses: {}
+      summary: Bulk create external games from JSON array
+      tags:
+      - Endpoints
+  /api/v1/external-games/import/csv:
+    post:
+      description: ""
+      operationId: importExternalGamesFromCSVFile
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/importExternalGamesFromCSVFile_request"
+        required: true
+      responses: {}
+      summary: Import external games from CSV file
+      tags:
+      - Endpoints
+  /api/v1/external-games/import/json:
+    post:
+      description: ""
+      operationId: importExternalGamesFromJSONPaste
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/importExternalGamesFromJSONPaste_request"
+        required: true
+      responses: {}
+      summary: Import external games from JSON paste
+      tags:
+      - Endpoints
+  /api/v1/external-games/{id}:
+    delete:
+      description: ""
+      operationId: deleteAnExternalGame
+      parameters:
+      - description: The ID of the external game.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      summary: Delete an external game
+      tags:
+      - Endpoints
+    get:
+      description: ""
+      operationId: getASingleExternalGame
+      parameters:
+      - description: The ID of the external game.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: Get a single external game
+      tags:
+      - Endpoints
+    put:
+      description: ""
+      operationId: updateAnExternalGame
+      parameters:
+      - description: The ID of the external game.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAnExternalGame_request"
+        required: false
+      responses: {}
+      summary: Update an external game
+      tags:
+      - Endpoints
+  /api/v1/game-transactions/export:
+    post:
+      description: ""
+      operationId: postApiV1GameTransactionsExport
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/postApiV1GameTransactionsExport_request"
+        required: true
+      responses: {}
+      summary: ""
+      tags:
+      - Endpoints
+  /api/v1/transaction-exports/{export_id}/download:
+    get:
+      description: ""
+      operationId: getApiV1TransactionExportsExport_idDownload
+      parameters:
+      - description: The ID of the export.
+        example: 16
+        explode: false
+        in: path
+        name: export_id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1TransactionExportsExport_idDownload_500_response"
+          description: ""
+      summary: ""
+      tags:
+      - Endpoints
+  /api/v1/freespins:
+    post:
+      description: |-
+        Issue free spins to a player for a specific game without starting a game session.
+        The player can use these freespins when they next start a game session.
+      operationId: createAStandaloneFreespin
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAStandaloneFreespin_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_201_response"
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_400_response"
+          description: ""
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_403_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_404_response"
+          description: ""
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_409_response"
+          description: ""
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_503_response"
+          description: ""
+      summary: Create a standalone freespin
+      tags:
+      - Freespins
+  /api/v1/freespins/{freespin_id}/cancel:
+    post:
+      description: |-
+        Cancel an existing freespin for a player. This will attempt to cancel the
+        freespin at the provider level (if supported) and mark it as cancelled in
+        our system.
+      operationId: cancelAStandaloneFreespin
+      parameters:
+      - description: The freespin campaign ID.
+        example: campaign_abc
+        explode: false
+        in: path
+        name: freespin_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/cancelAStandaloneFreespin_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_200_response"
+          description: ""
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_401_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_404_response"
+          description: ""
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_409_response"
+          description: ""
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_500_response"
+          description: ""
+      summary: Cancel a standalone freespin
+      tags:
+      - Freespins
+  /api/v1/game-sessions/start:
+    post:
+      description: Initialize a new game session for a player
+      operationId: startAGameSession
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/startAGameSession_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAGameSession_201_response"
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAGameSession_400_response"
+          description: ""
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_403_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAStandaloneFreespin_404_response"
+          description: ""
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAGameSession_503_response"
+          description: ""
+      summary: Start a game session
+      tags:
+      - Game Sessions
+  /api/v1/game-sessions/{session_id}/status:
+    get:
+      description: Retrieve the current status of a game session
+      operationId: getSessionStatus
+      parameters:
+      - description: The session ID.
+        example: abc123
+        explode: false
+        in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSessionStatus_200_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSessionStatus_404_response"
+          description: ""
+      summary: Get session status
+      tags:
+      - Game Sessions
+  /api/v1/game-sessions/{session_id}/end:
+    post:
+      description: Terminate an active game session
+      operationId: endAGameSession
+      parameters:
+      - description: The session ID to end.
+        example: abc123
+        explode: false
+        in: path
+        name: session_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/endAGameSession_200_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getSessionStatus_404_response"
+          description: ""
+      summary: End a game session
+      tags:
+      - Game Sessions
+  /api/v1/game-transactions:
+    get:
+      description: Retrieve a list of game transactions for the authenticated operator
+      operationId: getTransactionHistory
+      parameters:
+      - description: Filter by player ID.
+        example: player_456
+        explode: true
+        in: query
+        name: player_id
+        required: false
+        schema:
+          description: Filter by player ID.
+          example: player_456
+          type: string
+        style: form
+      - description: Filter by game ID.
+        example: 123
+        explode: true
+        in: query
+        name: game_id
+        required: false
+        schema:
+          description: Filter by game ID.
+          example: 123
+          type: integer
+        style: form
+      - description: "Filter by transaction type (bet, win, rollback)."
+        example: bet
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          description: "Filter by transaction type (bet, win, rollback)."
+          example: bet
+          type: string
+        style: form
+      - description: Filter transactions from date (ISO 8601).
+        example: 2024-01-01T00:00:00Z
+        explode: true
+        in: query
+        name: from_date
+        required: false
+        schema:
+          description: Filter transactions from date (ISO 8601).
+          example: 2024-01-01T00:00:00Z
+          type: string
+        style: form
+      - description: Filter transactions to date (ISO 8601).
+        example: 2024-01-31T23:59:59Z
+        explode: true
+        in: query
+        name: to_date
+        required: false
+        schema:
+          description: Filter transactions to date (ISO 8601).
+          example: 2024-01-31T23:59:59Z
+          type: string
+        style: form
+      - description: "Number of results per page. Default: 100."
+        example: 50
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          description: "Number of results per page. Default: 100."
+          example: 50
+          type: integer
+        style: form
+      - description: "Number of results to skip. Default: 0."
+        example: 100
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          description: "Number of results to skip. Default: 0."
+          example: 100
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTransactionHistory_200_response"
+          description: ""
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_401_response"
+          description: ""
+      summary: Get transaction history
+      tags:
+      - Game Transactions
+  /api/v1/game-transactions/{id}:
+    get:
+      description: Retrieve detailed information about a specific transaction
+      operationId: getTransactionDetails
+      parameters:
+      - description: The ID of the transaction.
+        example: 789
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                example: |-
+                  {
+                    "success": true,
+                    "data": {
+                      "id": 789,
+                      "player_id": "player_456",
+                      "game": {
+                        "id": 123,
+                        "title": "Book of Dead",
+                        "producer": "Pragmatic Play"
+                      },
+                      "type": "bet",
+                      "amount": 10.00,
+                      "currency": "USD",
+                      "balance_before": 1000.00,
+                      "balance_after": 990.00,
+                      "round_id": "round_abc123",
+                      "provider_transaction_id": "obet_tx_123456",
+                      "status": "completed",
+                      "created_at": "2024-01-01T10:00:00Z",
+                      "extra_data": {
+                        "spin_details": {...}
+                      }
+                    }
+                  }
+                type: string
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTransactionDetails_404_response"
+          description: ""
+      summary: Get transaction details
+      tags:
+      - Game Transactions
+  /api/v1/games:
+    get:
+      description: Get a list of available games for the operator
+      operationId: listGames
+      parameters:
+      - description: Search games by name.
+        example: sweet bonanza
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          description: Search games by name.
+          example: sweet bonanza
+          type: string
+        style: form
+      - description: Filter by producer ID.
+        example: 1
+        explode: true
+        in: query
+        name: producer_id
+        required: false
+        schema:
+          description: Filter by producer ID.
+          example: 1
+          type: integer
+        style: form
+      - description: Filter by provider slug.
+        example: nuxgaming
+        explode: true
+        in: query
+        name: provider
+        required: false
+        schema:
+          description: Filter by provider slug.
+          example: nuxgaming
+          type: string
+        style: form
+      - description: Filter by game type.
+        example: slot
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          description: Filter by game type.
+          example: slot
+          type: string
+        style: form
+      - description: Number of results per page or "all" for all results.
+        example: "20"
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          description: Number of results per page or "all" for all results.
+          example: "20"
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/listGames_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listGames_200_response"
+          description: ""
+      summary: List games
+      tags:
+      - Games
+  /api/v1/games/{id}:
+    get:
+      description: ""
+      operationId: getApiV1GamesId
+      parameters:
+      - description: The ID of the game.
+        example: architecto
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getApiV1Producers_401_response"
+          description: ""
+      summary: ""
+      tags:
+      - Games
+  /api/v1/multi-sessions/start:
+    post:
+      description: |-
+        Create multiple game sessions at once for a swipeable interface.
+        Returns a URL that can be loaded in the player's browser for a TikTok-style
+        game discovery experience.
+      operationId: startAMultiSession
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/startAMultiSession_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAMultiSession_201_response"
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAMultiSession_400_response"
+          description: ""
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_401_response"
+          description: ""
+      summary: Start a multi-session
+      tags:
+      - Multi-Sessions
+  /api/v1/multi-sessions/{token}/status:
+    get:
+      description: Retrieve the current status and game list for a multi-session.
+      operationId: getMultiSessionStatus
+      parameters:
+      - description: The multi-session token.
+        example: 550e8400-e29b-41d4-a716-446655440000
+        explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getMultiSessionStatus_200_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getMultiSessionStatus_404_response"
+          description: ""
+      summary: Get multi-session status
+      tags:
+      - Multi-Sessions
+  /api/v1/multi-sessions/{token}/end:
+    post:
+      description: Close all active game sessions in a multi-session.
+      operationId: endMultiSession
+      parameters:
+      - description: The multi-session token.
+        example: 550e8400-e29b-41d4-a716-446655440000
+        explode: false
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/endMultiSession_200_response"
+          description: ""
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/cancelAStandaloneFreespin_401_response"
+          description: ""
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getMultiSessionStatus_404_response"
+          description: ""
+      summary: End multi-session
+      tags:
+      - Multi-Sessions
+  /api/v1/widget/domains:
+    get:
+      description: Get all registered widget domains for the authenticated operator
+      operationId: listRegisteredDomains
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listRegisteredDomains_200_response"
+          description: ""
+      summary: List registered domains
+      tags:
+      - Widget Management
+    post:
+      description: Register a domain that can embed widgets. Returns a domain_token
+        used to generate widget tokens.
+      operationId: registerANewDomain
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/registerANewDomain_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registerANewDomain_201_response"
+          description: ""
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registerANewDomain_422_response"
+          description: ""
+      summary: Register a new domain
+      tags:
+      - Widget Management
+  /api/v1/widget/domains/{id}:
+    delete:
+      description: Remove a registered domain and revoke all its tokens
+      operationId: removeADomain
+      parameters:
+      - description: The domain ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeADomain_200_response"
+          description: ""
+      summary: Remove a domain
+      tags:
+      - Widget Management
+    get:
+      description: Get details of a specific registered domain
+      operationId: getDomainDetails
+      parameters:
+      - description: The domain ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getDomainDetails_200_response"
+          description: ""
+      summary: Get domain details
+      tags:
+      - Widget Management
+    put:
+      description: Update a registered domain's settings
+      operationId: updateDomainSettings
+      parameters:
+      - description: The domain ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateDomainSettings_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateDomainSettings_200_response"
+          description: ""
+      summary: Update domain settings
+      tags:
+      - Widget Management
+  /api/v1/widget/domains/{id}/regenerate-token:
+    post:
+      description: Generate a new domain_token (invalidates all existing widget tokens)
+      operationId: regenerateDomainToken
+      parameters:
+      - description: The domain ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/regenerateDomainToken_200_response"
+          description: ""
+      summary: Regenerate domain token
+      tags:
+      - Widget Management
+  /api/v1/widget/tokens:
+    get:
+      description: Get all widget tokens for the authenticated operator
+      operationId: listWidgetTokens
+      parameters:
+      - description: optional Filter by domain ID.
+        example: 1
+        explode: true
+        in: query
+        name: domain_id
+        required: false
+        schema:
+          description: optional Filter by domain ID.
+          example: 1
+          type: integer
+        style: form
+      - description: optional Filter by active status.
+        example: true
+        explode: true
+        in: query
+        name: active
+        required: false
+        schema:
+          description: optional Filter by active status.
+          example: true
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWidgetTokens_200_response"
+          description: ""
+      summary: List widget tokens
+      tags:
+      - Widget Management
+    post:
+      description: Generate a new widget token for embedding. Requires domain_token
+        for authentication.
+      operationId: generateAWidgetToken
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/generateAWidgetToken_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateAWidgetToken_201_response"
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateAWidgetToken_400_response"
+          description: ""
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/generateAWidgetToken_401_response"
+          description: ""
+      summary: Generate a widget token
+      tags:
+      - Widget Management
+  /api/v1/widget/tokens/{id}:
+    delete:
+      description: Revoke a widget token (cannot be undone)
+      operationId: revokeAToken
+      parameters:
+      - description: The token ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/revokeAToken_200_response"
+          description: ""
+      summary: Revoke a token
+      tags:
+      - Widget Management
+    get:
+      description: Get details of a specific widget token
+      operationId: getTokenDetails
+      parameters:
+      - description: The token ID.
+        example: 1
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTokenDetails_200_response"
+          description: ""
+      summary: Get token details
+      tags:
+      - Widget Management
+  /api/v1/widget/tokens/bulk-revoke:
+    post:
+      description: Revoke multiple widget tokens at once
+      operationId: bulkRevokeTokens
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bulkRevokeTokens_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/bulkRevokeTokens_200_response"
+          description: ""
+      summary: Bulk revoke tokens
+      tags:
+      - Widget Management
+components:
+  schemas:
+    getSessionStatus_200_response:
+      example:
+        success: true
+        data:
+          session_id: abc123
+          status: active
+          player_id: player_456
+          game:
+            id: 123
+            title: Book of Dead
+          started_at: 2024-01-01T10:00:00Z
+          last_activity: 2024-01-01T10:05:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/getSessionStatus_200_response_data"
+      type: object
+    getApiV1TransactionExportsExport_idDownload_500_response:
+      example:
+        message: Server Error
+      properties:
+        message:
+          example: Server Error
+          type: string
+      type: object
+    listRegisteredDomains_200_response:
+      example:
+        success: true
+        data:
+        - id: 1
+          domain: casino.example.com
+          domain_token: abc123...
+          is_active: true
+          allowed_widgets:
+          - jackpot
+          tokens_count: 5
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          example:
+          - id: 1
+            domain: casino.example.com
+            domain_token: abc123...
+            is_active: true
+            allowed_widgets:
+            - jackpot
+            tokens_count: 5
+            created_at: 2024-01-01T00:00:00Z
+          items:
+            $ref: "#/components/schemas/listRegisteredDomains_200_response_data_inner"
+          type: array
+      type: object
+    regenerateDomainToken_200_response:
+      example:
+        success: true
+        data:
+          domain_token: new_token_here...
+        message: Domain token regenerated. All existing widget tokens have been revoked.
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/regenerateDomainToken_200_response_data"
+        message:
+          example: Domain token regenerated. All existing widget tokens have been
+            revoked.
+          type: string
+      type: object
+    registerANewDomain_201_response_data:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        domain_token:
+          example: abc123...
+          type: string
+        is_active:
+          example: true
+          type: boolean
+        allowed_widgets:
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    bulkCreateExternalGamesFromJSONArray_request:
+      properties:
+        games:
+          description: Must have at least 1 items. Must not have more than 1000 items.
+          example:
+          - []
+          items:
+            $ref: "#/components/schemas/createASingleExternalGame_request"
+          type: array
+      required:
+      - games
+      type: object
+    startAMultiSession_request:
+      properties:
+        player_id:
+          description: Player's ID in your system.
+          example: player_456
+          type: string
+        currency:
+          description: Three-letter currency code (ISO 4217).
+          example: USD
+          type: string
+        country_code:
+          description: Two-letter country code (ISO 3166-1 alpha-2).
+          example: US
+          type: string
+        ip_address:
+          description: Player's IP address.
+          example: 192.168.1.1
+          type: string
+        game_ids:
+          description: "optional Specific game IDs to include. If not provided, picks\
+            \ random games from each available provider."
+          example:
+          - 1
+          - 2
+          - 3
+          items:
+            type: string
+          type: array
+        locale:
+          description: optional Player's language preference (ISO 639-1).
+          example: en
+          nullable: true
+          type: string
+        device:
+          description: "optional Device type: desktop, mobile, tablet."
+          example: mobile
+          nullable: true
+          type: string
+      required:
+      - country_code
+      - currency
+      - ip_address
+      - player_id
+      type: object
+    listOperatorsJackpotPools_request:
+      properties:
+        currency:
+          description: Must be 3 characters.
+          example: bng
+          type: string
+        status:
+          description: ""
+          enum:
+          - active
+          - released
+          - expired
+          example: expired
+          type: string
+        pool_type:
+          description: ""
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - grand_prize
+          example: daily
+          type: string
+      type: object
+    createAStandaloneFreespin_400_response:
+      example:
+        success: false
+        message: Requested provider not available or does not support freespins for
+          this game
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Requested provider not available or does not support freespins
+            for this game
+          type: string
+      type: object
+    getSessionStatus_200_response_data_game:
+      properties:
+        id:
+          example: 123
+          type: integer
+        title:
+          example: Book of Dead
+          type: string
+      type: object
+    createAStandaloneFreespin_201_response:
+      example:
+        success: true
+        data:
+          freespin_id: campaign_abc
+          player_id: player_456
+          game_id: 123
+          total_count: 10
+          bet_amount: 0.5
+          currency: USD
+          expires_at: 2024-02-01T00:00:00Z
+          status: pending
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/createAStandaloneFreespin_201_response_data"
+      type: object
+    configureJackpotSettingsForTheOperator_request:
+      properties:
+        is_enabled:
+          description: ""
+          example: false
+          type: boolean
+        pool_types:
+          description: ""
+          example:
+          - daily
+          items:
+            enum:
+            - daily
+            - weekly
+            - monthly
+            - grand_prize
+            type: string
+          type: array
+        casino_cut_percentage:
+          description: Must be at least 0. Must not be greater than 0.9.
+          example: 1
+          type: number
+        winner_count:
+          description: Must be at least 1. Must not be greater than 10000.
+          example: 22
+          type: integer
+        distribution_method:
+          description: ""
+          enum:
+          - weighted
+          - random
+          example: random
+          type: string
+        weight_calculation:
+          description: ""
+          enum:
+          - contribution_sum
+          - bet_count
+          example: bet_count
+          type: string
+        prize_tiers:
+          description: ""
+          items:
+            $ref: "#/components/schemas/configureJackpotSettingsForTheOperator_request_prize_tiers_inner"
+          type: array
+          example: null
+        game_filter_enabled:
+          description: ""
+          example: true
+          type: boolean
+        webhook_enabled:
+          description: ""
+          example: false
+          type: boolean
+        reminder_hours_before:
+          description: Must be at least 1. Must not be greater than 168.
+          example: 7
+          nullable: true
+          type: integer
+      type: object
+    bulkRevokeTokens_request:
+      properties:
+        token_ids:
+          description: Array of token IDs to revoke.
+          example:
+          - 1
+          - 2
+          - 3
+          items:
+            type: string
+          type: array
+      required:
+      - token_ids
+      type: object
+    getMultiSessionStatus_200_response:
+      example:
+        success: true
+        data:
+          status: active
+          total_games: 8
+          active_sessions: 3
+          current_index: 0
+          games:
+          - position: 0
+            game_name: Book of Dead
+            status: ready
+          - position: 1
+            game_name: Sweet Bonanza
+            status: pending
+          expires_at: 2024-01-02T12:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/getMultiSessionStatus_200_response_data"
+      type: object
+    importExternalGamesFromCSVFile_request:
+      properties:
+        file:
+          description: Must be a file. Must not be greater than 10240 kilobytes.
+          format: binary
+          type: string
+      required:
+      - file
+      type: object
+    getApiV1Producers_401_response:
+      example:
+        error: Unauthorized
+        message: Invalid or inactive API key
+        code: 401
+      properties:
+        error:
+          example: Unauthorized
+          type: string
+        message:
+          example: Invalid or inactive API key
+          type: string
+        code:
+          example: 401
+          type: integer
+      type: object
+    createANewPromotion_request:
+      properties:
+        name:
+          description: Must not be greater than 255 characters.
+          example: b
+          type: string
+        description:
+          description: ""
+          example: Eius et animi quos velit et.
+          nullable: true
+          type: string
+        image_url:
+          description: Must be a valid URL.
+          example: http://www.ernser.org/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html
+          nullable: true
+          type: string
+        terms_and_conditions:
+          description: ""
+          example: architecto
+          nullable: true
+          type: string
+        promotion_type:
+          description: ""
+          example: architecto
+          type: string
+        cycle_type:
+          description: ""
+          example: architecto
+          type: string
+        starts_at:
+          description: Must be a valid date.
+          example: 2026-02-04T11:49:09
+          nullable: true
+          type: string
+        ends_at:
+          description: Must be a valid date. Must be a date after <code>starts_at</code>.
+          example: 2052-02-28
+          nullable: true
+          type: string
+        timezone:
+          description: ""
+          example: Asia/Yekaterinburg
+          nullable: true
+          type: string
+        prize_distribution:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+        total_prize_pool:
+          description: Must be at least 0.
+          example: 39
+          nullable: true
+          type: number
+        prize_currency:
+          description: Must be 3 characters.
+          example: gzm
+          nullable: true
+          type: string
+        winner_count:
+          description: Must be at least 1.
+          example: 35
+          nullable: true
+          type: integer
+        entry_config:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+        game_filter_enabled:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+        producer_filter_enabled:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+        webhook_enabled:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+        is_featured:
+          description: ""
+          example: false
+          nullable: true
+          type: boolean
+        game_ids:
+          description: The <code>id</code> of an existing record in the games table.
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+        producer_ids:
+          description: The <code>id</code> of an existing record in the producers
+            table.
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+      required:
+      - cycle_type
+      - name
+      - promotion_type
+      type: object
+    updateDomainSettings_request:
+      properties:
+        is_active:
+          description: optional Whether the domain is active.
+          example: true
+          nullable: true
+          type: boolean
+        allowed_widgets:
+          description: optional List of allowed widget types.
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+      type: object
+    listWidgetTokens_200_response:
+      example:
+        success: true
+        data:
+        - id: 1
+          domain: casino.example.com
+          widget_type: jackpot
+          player_id: null
+          currency: null
+          allowed_pool_types:
+          - daily
+          - weekly
+          is_active: true
+          expires_at: null
+          last_used_at: 2024-01-01T12:00:00Z
+          request_count: 150
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          example:
+          - id: 1
+            domain: casino.example.com
+            widget_type: jackpot
+            player_id: null
+            currency: null
+            allowed_pool_types:
+            - daily
+            - weekly
+            is_active: true
+            expires_at: null
+            last_used_at: 2024-01-01T12:00:00Z
+            request_count: 150
+            created_at: 2024-01-01T00:00:00Z
+          items:
+            $ref: "#/components/schemas/listWidgetTokens_200_response_data_inner"
+          type: array
+      type: object
+    configureLiveModeSettingsForAPool_request:
+      properties:
+        is_live_mode:
+          description: ""
+          example: false
+          type: boolean
+        live_mode_window_seconds:
+          description: Must be at least 10. Must not be greater than 300.
+          example: 1
+          type: integer
+      required:
+      - is_live_mode
+      type: object
+    startAGameSession_503_response:
+      example:
+        success: false
+        message: No available providers for this game in your country/currency
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: No available providers for this game in your country/currency
+          type: string
+      type: object
+    createAStandaloneFreespin_404_response:
+      example:
+        success: false
+        message: Game not found or not available
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Game not found or not available
+          type: string
+      type: object
+    startAMultiSession_201_response_data_games_inner:
+      properties:
+        position:
+          example: 0
+          type: integer
+        game_name:
+          example: Book of Dead
+          type: string
+        game_image:
+          example: https://...
+          type: string
+      type: object
+    postApiV1GameTransactionsExport_request:
+      properties:
+        format:
+          description: ""
+          enum:
+          - csv
+          - json
+          - pdf
+          example: pdf
+          type: string
+        from_date:
+          description: Must be a valid date.
+          example: 2026-02-04T11:49:09
+          type: string
+        to_date:
+          description: Must be a valid date. Must be a date after or equal to <code>from_date</code>.
+          example: 2052-02-28
+          type: string
+        player_id:
+          description: ""
+          example: architecto
+          nullable: true
+          type: string
+        game_id:
+          description: The <code>id</code> of an existing record in the games table.
+          example: 16
+          nullable: true
+          type: integer
+        type:
+          description: ""
+          enum:
+          - Win
+          - Lose
+          - BetPlacing
+          - BetPayedAbort
+          - BetPlacingAbort
+          - SportBetCancel
+          - Tip
+          - PromoWin
+          - TechnicalFix
+          - DropAndWin
+          - PromoStreamersDebit
+          - PromoStreamersCredit
+          - PromoStreamersBetPlacingAbort
+          - PromoStreamersBetPayedAbort
+          example: Lose
+          nullable: true
+          type: string
+        include_summary:
+          description: ""
+          example: false
+          type: boolean
+        async:
+          description: ""
+          example: true
+          type: boolean
+      required:
+      - format
+      - from_date
+      - to_date
+      type: object
+    cancelAStandaloneFreespin_401_response:
+      example:
+        success: false
+        message: Unauthorized
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Unauthorized
+          type: string
+      type: object
+    getTransactionHistory_200_response_data_inner:
+      properties:
+        id:
+          example: 789
+          type: integer
+        player_id:
+          example: player_456
+          type: string
+        game:
+          $ref: "#/components/schemas/getSessionStatus_200_response_data_game"
+        type:
+          example: bet
+          type: string
+        amount:
+          example: 10.0
+          type: number
+        currency:
+          example: USD
+          type: string
+        balance_after:
+          example: 990.0
+          type: number
+        round_id:
+          example: round_abc123
+          type: string
+        status:
+          example: completed
+          type: string
+        created_at:
+          example: 2024-01-01T10:00:00Z
+          type: string
+      type: object
+    createAStandaloneFreespin_403_response:
+      example:
+        success: false
+        message: Provider override is not enabled for your account
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Provider override is not enabled for your account
+          type: string
+      type: object
+    generateAWidgetToken_201_response:
+      example:
+        success: true
+        data:
+          id: 1
+          token: full_token_here...
+          widget_type: jackpot
+          player_id: null
+          allowed_pool_types:
+          - daily
+          - weekly
+          expires_at: null
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/generateAWidgetToken_201_response_data"
+      type: object
+    getTransactionDetails_404_response:
+      example:
+        success: false
+        message: Transaction not found
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Transaction not found
+          type: string
+      type: object
+    getMultiSessionStatus_200_response_data_games_inner:
+      properties:
+        position:
+          example: 0
+          type: integer
+        game_name:
+          example: Book of Dead
+          type: string
+        status:
+          example: ready
+          type: string
+      type: object
+    getDomainDetails_200_response:
+      example:
+        success: true
+        data:
+          id: 1
+          domain: casino.example.com
+          domain_token: abc123...
+          is_active: true
+          allowed_widgets:
+          - jackpot
+          tokens_count: 5
+          active_tokens_count: 3
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/getDomainDetails_200_response_data"
+      type: object
+    updateAPromotion_request:
+      properties:
+        name:
+          description: Must not be greater than 255 characters.
+          example: b
+          type: string
+        description:
+          description: ""
+          example: Eius et animi quos velit et.
+          nullable: true
+          type: string
+        image_url:
+          description: Must be a valid URL.
+          example: http://www.ernser.org/harum-mollitia-modi-deserunt-aut-ab-provident-perspiciatis-quo.html
+          nullable: true
+          type: string
+        terms_and_conditions:
+          description: ""
+          example: architecto
+          nullable: true
+          type: string
+        ends_at:
+          description: Must be a valid date.
+          example: 2026-02-04T11:49:09
+          nullable: true
+          type: string
+        prize_distribution:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+        total_prize_pool:
+          description: Must be at least 0.
+          example: 39
+          nullable: true
+          type: number
+        winner_count:
+          description: Must be at least 1.
+          example: 67
+          nullable: true
+          type: integer
+        entry_config:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+        game_filter_enabled:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+        producer_filter_enabled:
+          description: ""
+          example: false
+          nullable: true
+          type: boolean
+        webhook_enabled:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+        is_active:
+          description: ""
+          example: false
+          nullable: true
+          type: boolean
+        is_featured:
+          description: ""
+          example: true
+          nullable: true
+          type: boolean
+      type: object
+    startAGameSession_request:
+      properties:
+        game_id:
+          description: The ID of the game to start.
+          example: 123
+          type: integer
+        player_id:
+          description: The player's ID in your system.
+          example: player_456
+          type: string
+        currency:
+          description: Three-letter currency code (ISO 4217).
+          example: USD
+          type: string
+        ip_address:
+          description: The player's IP address.
+          example: 192.168.1.1
+          type: string
+        country_code:
+          description: Two-letter country code (ISO 3166-1 alpha-2).
+          example: US
+          type: string
+        return_url:
+          description: optional URL to redirect the player after game ends.
+          example: https://casino.com/lobby
+          nullable: true
+          type: string
+        locale:
+          description: optional Player's language preference (ISO 639-1).
+          example: en
+          nullable: true
+          type: string
+        provider:
+          description: optional Provider slug to use for this session. Requires can_override_provider
+            enabled.
+          example: nuxgaming
+          nullable: true
+          type: string
+        freespin_id:
+          description: optional Free spin bonus ID.
+          example: bonus_123
+          nullable: true
+          type: string
+        freespin_count:
+          description: optional Number of free spins.
+          example: 10
+          nullable: true
+          type: integer
+        freespin_bet_amount:
+          description: optional Bet amount per free spin.
+          example: "0.50"
+          nullable: true
+          type: numeric
+        expire_days:
+          description: optional Free spin expiration in days (1-30).
+          example: 7
+          nullable: true
+          type: integer
+        device:
+          description: "optional Device type (desktop, mobile)."
+          example: desktop
+          nullable: true
+          type: string
+      required:
+      - country_code
+      - currency
+      - game_id
+      - ip_address
+      - player_id
+      type: object
+    importExternalGamesFromJSONPaste_request_games_inner:
+      properties:
+        external_game_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        name:
+          description: Must not be greater than 255 characters.
+          example: "n"
+          type: string
+        producer_name:
+          description: Must not be greater than 255 characters.
+          example: g
+          nullable: true
+          type: string
+        image_url:
+          description: Must be a valid URL. Must not be greater than 500 characters.
+          example: http://www.okuneva.com/fugiat-sunt-nihil-accusantium-harum-mollitia.html
+          nullable: true
+          type: string
+      required:
+      - external_game_id
+      - name
+      type: object
+    startAMultiSession_400_response:
+      example:
+        success: false
+        message: Invalid request parameters
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Invalid request parameters
+          type: string
+      type: object
+    listGames_request:
+      properties:
+        search:
+          description: Must not be greater than 255 characters.
+          example: b
+          nullable: true
+          type: string
+        producer_id:
+          description: The <code>id</code> of an existing record in the game_producers
+            table.
+          example: 16
+          nullable: true
+          type: integer
+        provider:
+          description: The <code>slug</code> of an existing record in the providers
+            table.
+          example: architecto
+          nullable: true
+          type: string
+        type:
+          description: ""
+          enum:
+          - slot
+          - table
+          - live
+          example: table
+          nullable: true
+          type: string
+        per_page:
+          description: Must match the regex /^(all.
+          example: (all
+          nullable: true
+          type: string
+      type: object
+    createATargetedPlayerConfiguration_request:
+      properties:
+        player_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        pool_type:
+          description: ""
+          enum:
+          - grand_prize
+          - mega
+          - major
+          - minor
+          - mini
+          example: mini
+          type: string
+        currency:
+          description: Must be 3 characters.
+          example: ngz
+          type: string
+        threshold_amount:
+          description: Must be at least 1.
+          example: 27
+          type: number
+        threshold_variance:
+          description: Must be at least 0.
+          example: 8
+          type: number
+        metadata:
+          description: ""
+          properties: {}
+          type: object
+          example: null
+      required:
+      - currency
+      - player_id
+      - pool_type
+      - threshold_amount
+      type: object
+    registerANewDomain_201_response:
+      example:
+        success: true
+        data:
+          id: 1
+          domain: casino.example.com
+          domain_token: abc123...
+          is_active: true
+          allowed_widgets:
+          - jackpot
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/registerANewDomain_201_response_data"
+      type: object
+    createAStandaloneFreespin_409_response:
+      example:
+        success: false
+        message: Active freespin already exists for this campaign
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Active freespin already exists for this campaign
+          type: string
+      type: object
+    getDomainDetails_200_response_data:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        domain_token:
+          example: abc123...
+          type: string
+        is_active:
+          example: true
+          type: boolean
+        allowed_widgets:
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+        tokens_count:
+          example: 5
+          type: integer
+        active_tokens_count:
+          example: 3
+          type: integer
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    regenerateDomainToken_200_response_data:
+      properties:
+        domain_token:
+          example: new_token_here...
+          type: string
+      type: object
+    cancelAStandaloneFreespin_200_response:
+      example:
+        success: true
+        data:
+          freespin_id: campaign_abc
+          status: cancelled
+          cancelled_at: 2026-02-02T12:00:00Z
+          remaining_count: 5
+          used_count: 5
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/cancelAStandaloneFreespin_200_response_data"
+      type: object
+    getPlayerContributionHistory_request:
+      properties:
+        player_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        currency:
+          description: Must be 3 characters.
+          example: ngz
+          type: string
+        limit:
+          description: Must be at least 1. Must not be greater than 100.
+          example: 17
+          type: integer
+        offset:
+          description: Must be at least 0.
+          example: 8
+          type: integer
+      required:
+      - player_id
+      type: object
+    createAStandaloneFreespin_503_response:
+      example:
+        success: false
+        message: No freespin-capable providers available for this game/currency
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: No freespin-capable providers available for this game/currency
+          type: string
+      type: object
+    removeGamesFromAJackpotPoolType_request:
+      properties:
+        pool_type:
+          description: ""
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - grand_prize
+          example: daily
+          type: string
+        game_ids:
+          description: ""
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+      required:
+      - pool_type
+      type: object
+    addAContributionToAJackpotPool_request:
+      properties:
+        player_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        currency:
+          description: Must be 3 characters.
+          example: ngz
+          type: string
+        amount:
+          description: Must be at least 0.01. Must not be greater than 10000000.
+          example: 17
+          type: number
+        type:
+          description: Max 10 million per contribution.
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - grand_prize
+          example: weekly
+          type: string
+        transaction_id:
+          description: Must not be greater than 255 characters.
+          example: i
+          type: string
+        game_id:
+          description: The <code>id</code> of an existing record in the games table.
+          example: 16
+          nullable: true
+          type: integer
+        external_game_id:
+          description: Must not be greater than 100 characters.
+          example: "n"
+          nullable: true
+          type: string
+        game_session_id:
+          description: The <code>id</code> of an existing record in the game_sessions
+            table.
+          example: 16
+          nullable: true
+          type: integer
+        metadata:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+      required:
+      - amount
+      - currency
+      - player_id
+      - transaction_id
+      - type
+      type: object
+    bulkDeleteExternalGamesByIDs_request:
+      properties:
+        ids:
+          description: ""
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+      type: object
+    listGames_200_response_meta:
+      properties:
+        total:
+          example: 100
+          type: integer
+      type: object
+    listExternalGamesForOperator_request:
+      properties:
+        search:
+          description: Must not be greater than 255 characters.
+          example: b
+          type: string
+        producer_name:
+          description: Must not be greater than 255 characters.
+          example: "n"
+          type: string
+        is_active:
+          description: ""
+          example: true
+          type: boolean
+        per_page:
+          description: Must be at least 1. Must not be greater than 100.
+          example: 7
+          type: integer
+      type: object
+    bulkRevokeTokens_200_response:
+      example:
+        success: true
+        message: 3 tokens revoked successfully
+      properties:
+        success:
+          example: true
+          type: boolean
+        message:
+          example: 3 tokens revoked successfully
+          type: string
+      type: object
+    startAGameSession_201_response_data:
+      properties:
+        session_id:
+          example: abc123
+          type: string
+        session_token:
+          example: d4f5g6h7j8k9...
+          type: string
+        game_url:
+          example: https://game-provider.com/play/session123
+          type: string
+        expires_at:
+          example: 2024-01-01T12:00:00Z
+          type: string
+      type: object
+    cancelAStandaloneFreespin_409_response:
+      example:
+        success: false
+        message: "Freespin cannot be cancelled (already cancelled, completed, or expired)"
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: "Freespin cannot be cancelled (already cancelled, completed, or\
+            \ expired)"
+          type: string
+      type: object
+    createAStandaloneFreespin_request:
+      properties:
+        game_id:
+          description: The internal game ID.
+          example: 123
+          type: integer
+        player_id:
+          description: The player's ID in your system.
+          example: player_456
+          type: string
+        currency:
+          description: Three-letter currency code (ISO 4217).
+          example: USD
+          type: string
+        freespin_id:
+          description: Your unique identifier for this freespin campaign.
+          example: campaign_abc
+          type: string
+        freespin_count:
+          description: Number of free spins to award (1-1000).
+          example: 10
+          type: integer
+        freespin_bet_amount:
+          description: optional Bet amount per free spin (0.01-1000).
+          example: "0.50"
+          nullable: true
+          type: numeric
+        expire_days:
+          description: "optional Expiration in days, default 7, max 30."
+          example: 7
+          nullable: true
+          type: integer
+        provider:
+          description: optional Specific provider slug to use.
+          example: ela
+          nullable: true
+          type: string
+      required:
+      - currency
+      - freespin_count
+      - freespin_id
+      - game_id
+      - player_id
+      type: object
+    listWidgetTokens_200_response_data_inner:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        widget_type:
+          example: jackpot
+          type: string
+        player_id:
+          type: string
+          example: null
+        currency:
+          type: string
+          example: null
+        allowed_pool_types:
+          example:
+          - daily
+          - weekly
+          items:
+            type: string
+          type: array
+        is_active:
+          example: true
+          type: boolean
+        expires_at:
+          type: string
+          example: null
+        last_used_at:
+          example: 2024-01-01T12:00:00Z
+          type: string
+        request_count:
+          example: 150
+          type: integer
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    startAGameSession_400_response:
+      example:
+        success: false
+        message: Requested provider not available for this game
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Requested provider not available for this game
+          type: string
+      type: object
+    generateAWidgetToken_401_response:
+      example:
+        success: false
+        message: Invalid domain token
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Invalid domain token
+          type: string
+      type: object
+    updateDomainSettings_200_response:
+      example:
+        success: true
+        data:
+          id: 1
+          domain: casino.example.com
+          is_active: true
+          allowed_widgets:
+          - jackpot
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/updateDomainSettings_200_response_data"
+      type: object
+    getSessionStatus_200_response_data:
+      properties:
+        session_id:
+          example: abc123
+          type: string
+        status:
+          example: active
+          type: string
+        player_id:
+          example: player_456
+          type: string
+        game:
+          $ref: "#/components/schemas/getSessionStatus_200_response_data_game"
+        started_at:
+          example: 2024-01-01T10:00:00Z
+          type: string
+        last_activity:
+          example: 2024-01-01T10:05:00Z
+          type: string
+      type: object
+    manageGamesForAPromotion_request:
+      properties:
+        game_ids:
+          description: The <code>id</code> of an existing record in the games table.
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+      type: object
+    generateAWidgetToken_201_response_data:
+      properties:
+        id:
+          example: 1
+          type: integer
+        token:
+          example: full_token_here...
+          type: string
+        widget_type:
+          example: jackpot
+          type: string
+        player_id:
+          type: string
+          example: null
+        allowed_pool_types:
+          example:
+          - daily
+          - weekly
+          items:
+            type: string
+          type: array
+        expires_at:
+          type: string
+          example: null
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    getGamesForAPoolTypeOrAllPoolTypes_request:
+      properties:
+        pool_type:
+          description: ""
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - grand_prize
+          example: grand_prize
+          type: string
+      type: object
+    registerANewDomain_422_response:
+      example:
+        success: false
+        message: Domain already registered
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Domain already registered
+          type: string
+      type: object
+    getTransactionHistory_200_response:
+      example:
+        success: true
+        data:
+        - id: 789
+          player_id: player_456
+          game:
+            id: 123
+            title: Book of Dead
+          type: bet
+          amount: 10.0
+          currency: USD
+          balance_after: 990.0
+          round_id: round_abc123
+          status: completed
+          created_at: 2024-01-01T10:00:00Z
+        meta:
+          total: 500
+          limit: 100
+          offset: 0
+          summary:
+            total_bets: 1000.0
+            total_wins: 950.0
+            net_result: -50.0
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          example:
+          - id: 789
+            player_id: player_456
+            game:
+              id: 123
+              title: Book of Dead
+            type: bet
+            amount: 10
+            currency: USD
+            balance_after: 990
+            round_id: round_abc123
+            status: completed
+            created_at: 2024-01-01T10:00:00Z
+          items:
+            $ref: "#/components/schemas/getTransactionHistory_200_response_data_inner"
+          type: array
+        meta:
+          $ref: "#/components/schemas/getTransactionHistory_200_response_meta"
+      type: object
+    getTokenDetails_200_response_data:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        widget_type:
+          example: jackpot
+          type: string
+        player_id:
+          type: string
+          example: null
+        currency:
+          type: string
+          example: null
+        allowed_pool_types:
+          example:
+          - daily
+          - weekly
+          items:
+            type: string
+          type: array
+        configuration:
+          type: string
+          example: null
+        is_active:
+          example: true
+          type: boolean
+        is_valid:
+          example: true
+          type: boolean
+        expires_at:
+          type: string
+          example: null
+        last_used_at:
+          example: 2024-01-01T12:00:00Z
+          type: string
+        request_count:
+          example: 150
+          type: integer
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    startAGameSession_201_response:
+      example:
+        success: true
+        data:
+          session_id: abc123
+          session_token: d4f5g6h7j8k9...
+          game_url: https://game-provider.com/play/session123
+          expires_at: 2024-01-01T12:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/startAGameSession_201_response_data"
+      type: object
+    registerANewDomain_request:
+      properties:
+        domain:
+          description: "The domain to register (e.g., \"casino.example.com\")."
+          example: casino.example.com
+          type: string
+        allowed_widgets:
+          description: "optional List of allowed widget types. Default: [\"jackpot\"\
+            ]."
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+      required:
+      - domain
+      type: object
+    updateDomainSettings_200_response_data:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        is_active:
+          example: true
+          type: boolean
+        allowed_widgets:
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+      type: object
+    removeADomain_200_response:
+      example:
+        success: true
+        message: Domain removed successfully
+      properties:
+        success:
+          example: true
+          type: boolean
+        message:
+          example: Domain removed successfully
+          type: string
+      type: object
+    getTransactionHistory_200_response_meta_summary:
+      properties:
+        total_bets:
+          example: 1000.0
+          type: number
+        total_wins:
+          example: 950.0
+          type: number
+        net_result:
+          example: -50.0
+          type: number
+      type: object
+    getMultiSessionStatus_404_response:
+      example:
+        success: false
+        message: Multi-session not found
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Multi-session not found
+          type: string
+      type: object
+    endMultiSession_200_response:
+      example:
+        success: true
+        message: Multi-session ended successfully
+      properties:
+        success:
+          example: true
+          type: boolean
+        message:
+          example: Multi-session ended successfully
+          type: string
+      type: object
+    generateAWidgetToken_400_response:
+      example:
+        success: false
+        message: player_id and currency must be provided together
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: player_id and currency must be provided together
+          type: string
+      type: object
+    getMultiSessionStatus_200_response_data:
+      properties:
+        status:
+          example: active
+          type: string
+        total_games:
+          example: 8
+          type: integer
+        active_sessions:
+          example: 3
+          type: integer
+        current_index:
+          example: 0
+          type: integer
+        games:
+          example:
+          - position: 0
+            game_name: Book of Dead
+            status: ready
+          - position: 1
+            game_name: Sweet Bonanza
+            status: pending
+          items:
+            $ref: "#/components/schemas/getMultiSessionStatus_200_response_data_games_inner"
+          type: array
+        expires_at:
+          example: 2024-01-02T12:00:00Z
+          type: string
+      type: object
+    generateAWidgetToken_request:
+      properties:
+        domain_token:
+          description: The domain token from domain registration.
+          example: abc123...
+          type: string
+        pool_types:
+          description: "optional Allowed jackpot pool types. Default: [\"daily\",\"\
+            weekly\",\"monthly\"]."
+          example:
+          - daily
+          - weekly
+          items:
+            type: string
+          type: array
+        player_id:
+          description: optional Lock token to specific player (anonymous mode if omitted).
+          example: player123
+          nullable: true
+          type: string
+        currency:
+          description: optional Player's currency (required if player_id provided).
+          example: USD
+          nullable: true
+          type: string
+        expires_at:
+          description: optional Token expiration time (null = never expires).
+          example: 2024-12-31T23:59:59Z
+          nullable: true
+          type: datetime
+        configuration:
+          description: optional Additional widget configuration.
+          example:
+            theme: dark
+          nullable: true
+          properties: {}
+          type: object
+      required:
+      - domain_token
+      type: object
+    listTargetedPlayersForOperator_request:
+      properties:
+        pool_type:
+          description: ""
+          enum:
+          - grand_prize
+          - mega
+          - major
+          - minor
+          - mini
+          example: grand_prize
+          type: string
+        currency:
+          description: Must be 3 characters.
+          example: bng
+          type: string
+        active_only:
+          description: ""
+          example: true
+          type: boolean
+        limit:
+          description: Must be at least 1. Must not be greater than 100.
+          example: 16
+          type: integer
+        offset:
+          description: Must be at least 0.
+          example: 77
+          type: integer
+      type: object
+    startAMultiSession_201_response_data:
+      properties:
+        multi_session_id:
+          example: 550e8400-e29b-41d4-a716-446655440000
+          type: string
+        swipe_url:
+          example: https://domain.com/play/550e8400-e29b-41d4-a716-446655440000
+          type: string
+        total_games:
+          example: 8
+          type: integer
+        games:
+          example:
+          - position: 0
+            game_name: Book of Dead
+            game_image: https://...
+          - position: 1
+            game_name: Sweet Bonanza
+            game_image: https://...
+          items:
+            $ref: "#/components/schemas/startAMultiSession_201_response_data_games_inner"
+          type: array
+        expires_at:
+          example: 2024-01-02T12:00:00Z
+          type: string
+      type: object
+    cancelAStandaloneFreespin_request:
+      properties:
+        reason:
+          description: optional Reason for cancellation.
+          example: Player request
+          nullable: true
+          type: string
+      type: object
+    configureJackpotSettingsForTheOperator_request_prize_tiers_inner:
+      nullable: true
+      properties:
+        tier:
+          description: This field is required when <code>prize_tiers</code> is present.
+            Must be at least 1.
+          example: 66
+          type: integer
+        winner_count:
+          description: This field is required when <code>prize_tiers</code> is present.
+            Must be at least 1.
+          example: 27
+          type: integer
+        percentage:
+          description: This field is required when <code>prize_tiers</code> is present.
+            Must be at least 0.01. Must not be greater than 100.
+          example: 15
+          type: number
+      type: object
+    createASingleExternalGame_request:
+      properties:
+        external_game_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        name:
+          description: Must not be greater than 255 characters.
+          example: "n"
+          type: string
+        producer_name:
+          description: Must not be greater than 255 characters.
+          example: g
+          nullable: true
+          type: string
+        image_url:
+          description: Must be a valid URL. Must not be greater than 500 characters.
+          example: http://www.okuneva.com/fugiat-sunt-nihil-accusantium-harum-mollitia.html
+          nullable: true
+          type: string
+        metadata:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+      required:
+      - external_game_id
+      - name
+      type: object
+    startAMultiSession_201_response:
+      example:
+        success: true
+        data:
+          multi_session_id: 550e8400-e29b-41d4-a716-446655440000
+          swipe_url: https://domain.com/play/550e8400-e29b-41d4-a716-446655440000
+          total_games: 8
+          games:
+          - position: 0
+            game_name: Book of Dead
+            game_image: https://...
+          - position: 1
+            game_name: Sweet Bonanza
+            game_image: https://...
+          expires_at: 2024-01-02T12:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/startAMultiSession_201_response_data"
+      type: object
+    listGames_200_response:
+      example:
+        data:
+        - id: 123
+          title: Sweet Bonanza
+          producer: Pragmatic Play
+          category: slot
+          type: slot
+          image_url: https://...
+          currencies_supported:
+          - USD
+          - EUR
+          countries_supported:
+          - US
+          - DE
+          has_demo: true
+          has_freespins: true
+        meta:
+          total: 100
+      properties:
+        data:
+          example:
+          - id: 123
+            title: Sweet Bonanza
+            producer: Pragmatic Play
+            category: slot
+            type: slot
+            image_url: https://...
+            currencies_supported:
+            - USD
+            - EUR
+            countries_supported:
+            - US
+            - DE
+            has_demo: true
+            has_freespins: true
+          items:
+            $ref: "#/components/schemas/listGames_200_response_data_inner"
+          type: array
+        meta:
+          $ref: "#/components/schemas/listGames_200_response_meta"
+      type: object
+    cancelAStandaloneFreespin_200_response_data:
+      properties:
+        freespin_id:
+          example: campaign_abc
+          type: string
+        status:
+          example: cancelled
+          type: string
+        cancelled_at:
+          example: 2026-02-02T12:00:00Z
+          type: string
+        remaining_count:
+          example: 5
+          type: integer
+        used_count:
+          example: 5
+          type: integer
+      type: object
+    listRegisteredDomains_200_response_data_inner:
+      properties:
+        id:
+          example: 1
+          type: integer
+        domain:
+          example: casino.example.com
+          type: string
+        domain_token:
+          example: abc123...
+          type: string
+        is_active:
+          example: true
+          type: boolean
+        allowed_widgets:
+          example:
+          - jackpot
+          items:
+            type: string
+          type: array
+        tokens_count:
+          example: 5
+          type: integer
+        created_at:
+          example: 2024-01-01T00:00:00Z
+          type: string
+      type: object
+    importExternalGamesFromJSONPaste_request:
+      properties:
+        games:
+          description: Must have at least 1 items. Must not have more than 1000 items.
+          example:
+          - []
+          items:
+            $ref: "#/components/schemas/importExternalGamesFromJSONPaste_request_games_inner"
+          type: array
+      required:
+      - games
+      type: object
+    cancelAStandaloneFreespin_500_response:
+      example:
+        success: false
+        message: Failed to cancel freespin at provider
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Failed to cancel freespin at provider
+          type: string
+      type: object
+    setGrandPrizeExpirationDate_request:
+      properties:
+        expires_at:
+          description: Must be a valid date. Must be a date after <code>now</code>.
+          example: 2052-02-28
+          type: string
+      required:
+      - expires_at
+      type: object
+    getTransactionHistory_200_response_meta:
+      properties:
+        total:
+          example: 500
+          type: integer
+        limit:
+          example: 100
+          type: integer
+        offset:
+          example: 0
+          type: integer
+        summary:
+          $ref: "#/components/schemas/getTransactionHistory_200_response_meta_summary"
+      type: object
+    getSessionStatus_404_response:
+      example:
+        success: false
+        message: Session not found
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Session not found
+          type: string
+      type: object
+    endAGameSession_200_response:
+      example:
+        success: true
+        message: Session ended successfully
+      properties:
+        success:
+          example: true
+          type: boolean
+        message:
+          example: Session ended successfully
+          type: string
+      type: object
+    addGamesToAJackpotPoolType_request:
+      properties:
+        pool_type:
+          description: ""
+          enum:
+          - daily
+          - weekly
+          - monthly
+          - grand_prize
+          example: grand_prize
+          type: string
+        game_ids:
+          description: ""
+          example:
+          - 16
+          items:
+            type: integer
+          type: array
+      required:
+      - pool_type
+      type: object
+    getTokenDetails_200_response:
+      example:
+        success: true
+        data:
+          id: 1
+          domain: casino.example.com
+          widget_type: jackpot
+          player_id: null
+          currency: null
+          allowed_pool_types:
+          - daily
+          - weekly
+          configuration: null
+          is_active: true
+          is_valid: true
+          expires_at: null
+          last_used_at: 2024-01-01T12:00:00Z
+          request_count: 150
+          created_at: 2024-01-01T00:00:00Z
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/getTokenDetails_200_response_data"
+      type: object
+    cancelAStandaloneFreespin_404_response:
+      example:
+        success: false
+        message: Freespin not found
+      properties:
+        success:
+          example: false
+          type: boolean
+        message:
+          example: Freespin not found
+          type: string
+      type: object
+    createAStandaloneFreespin_201_response_data:
+      properties:
+        freespin_id:
+          example: campaign_abc
+          type: string
+        player_id:
+          example: player_456
+          type: string
+        game_id:
+          example: 123
+          type: integer
+        total_count:
+          example: 10
+          type: integer
+        bet_amount:
+          example: 0.5
+          type: number
+        currency:
+          example: USD
+          type: string
+        expires_at:
+          example: 2024-02-01T00:00:00Z
+          type: string
+        status:
+          example: pending
+          type: string
+      type: object
+    revokeAToken_200_response:
+      example:
+        success: true
+        message: Token revoked successfully
+      properties:
+        success:
+          example: true
+          type: boolean
+        message:
+          example: Token revoked successfully
+          type: string
+      type: object
+    updateAnExternalGame_request:
+      properties:
+        external_game_id:
+          description: Must not be greater than 100 characters.
+          example: b
+          type: string
+        name:
+          description: Must not be greater than 255 characters.
+          example: "n"
+          type: string
+        producer_name:
+          description: Must not be greater than 255 characters.
+          example: g
+          nullable: true
+          type: string
+        image_url:
+          description: Must be a valid URL. Must not be greater than 500 characters.
+          example: http://www.okuneva.com/fugiat-sunt-nihil-accusantium-harum-mollitia.html
+          nullable: true
+          type: string
+        metadata:
+          description: ""
+          nullable: true
+          properties: {}
+          type: object
+          example: null
+        is_active:
+          description: ""
+          example: true
+          type: boolean
+      type: object
+    listGames_200_response_data_inner:
+      properties:
+        id:
+          example: 123
+          type: integer
+        title:
+          example: Sweet Bonanza
+          type: string
+        producer:
+          example: Pragmatic Play
+          type: string
+        category:
+          example: slot
+          type: string
+        type:
+          example: slot
+          type: string
+        image_url:
+          example: https://...
+          type: string
+        currencies_supported:
+          example:
+          - USD
+          - EUR
+          items:
+            type: string
+          type: array
+        countries_supported:
+          example:
+          - US
+          - DE
+          items:
+            type: string
+          type: array
+        has_demo:
+          example: true
+          type: boolean
+        has_freespins:
+          example: true
+          type: boolean
+      type: object
+  securitySchemes:
+    default:
+      description: You can retrieve your token by visiting your dashboard and clicking
+        <b>Generate API token</b>.
+      scheme: bearer
+      type: http
