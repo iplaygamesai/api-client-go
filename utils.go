@@ -359,3 +359,103 @@ func newStrictDecoder(data []byte) *json.Decoder {
 func reportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
 }
+
+// Numeric represents a numeric value that can be either an integer or a float
+type Numeric float64
+
+// NullableNumeric represents a nullable numeric value
+type NullableNumeric struct {
+	value *Numeric
+	isSet bool
+}
+
+// Get returns the value
+func (v NullableNumeric) Get() *Numeric {
+	return v.value
+}
+
+// Set sets the value
+func (v *NullableNumeric) Set(val *Numeric) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns whether the value has been set
+func (v NullableNumeric) IsSet() bool {
+	return v.isSet
+}
+
+// Unset clears the value
+func (v *NullableNumeric) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableNumeric creates a new NullableNumeric
+func NewNullableNumeric(val *Numeric) *NullableNumeric {
+	return &NullableNumeric{value: val, isSet: true}
+}
+
+// MarshalJSON implements json.Marshaler
+func (v NullableNumeric) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+// UnmarshalJSON implements json.Unmarshaler
+func (v *NullableNumeric) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+// Datetime represents a datetime value
+type Datetime time.Time
+
+// NullableDatetime represents a nullable datetime value
+type NullableDatetime struct {
+	value *Datetime
+	isSet bool
+}
+
+// Get returns the value
+func (v NullableDatetime) Get() *Datetime {
+	return v.value
+}
+
+// Set sets the value
+func (v *NullableDatetime) Set(val *Datetime) {
+	v.value = val
+	v.isSet = true
+}
+
+// IsSet returns whether the value has been set
+func (v NullableDatetime) IsSet() bool {
+	return v.isSet
+}
+
+// Unset clears the value
+func (v *NullableDatetime) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+// NewNullableDatetime creates a new NullableDatetime
+func NewNullableDatetime(val *Datetime) *NullableDatetime {
+	return &NullableDatetime{value: val, isSet: true}
+}
+
+// MarshalJSON implements json.Marshaler
+func (v NullableDatetime) MarshalJSON() ([]byte, error) {
+	return json.Marshal(time.Time(*v.value))
+}
+
+// UnmarshalJSON implements json.Unmarshaler
+func (v *NullableDatetime) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	var t time.Time
+	if err := json.Unmarshal(src, &t); err != nil {
+		return err
+	}
+	dt := Datetime(t)
+	v.value = &dt
+	return nil
+}
